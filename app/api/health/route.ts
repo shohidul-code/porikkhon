@@ -1,0 +1,2 @@
+import {serverSupabase} from '../../../lib/supabase/server';
+export async function GET(){const client=await serverSupabase();const {error}=await client.rpc('porikkhon_leaderboard');return Response.json({status:error?'degraded':'ok',database:error?'unavailable':'connected',generation:!!(process.env.GEMINI_API_KEY||process.env.OPENROUTER_API_KEY),billingEnabled:process.env.BILLING_ENABLED==='true'},{status:error?503:200,headers:{'Cache-Control':'no-store'}});}
