@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="440" viewBox="0 0 1440 440" fill="none" role="img" aria-labelledby="title description">
+  <title id="title">Porikkhon — Your next step, prepared.</title>
+  <desc id="description">A deep teal banner with a mint Porikkhon mark, a cream headline and an abstract stack of study cards.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1440" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#073D42"/><stop offset=".65" stop-color="#07565A"/><stop offset="1" stop-color="#0A6A6B"/></linearGradient>
+    <linearGradient id="card" x1="1030" y1="120" x2="1280" y2="335" gradientUnits="userSpaceOnUse"><stop stop-color="#F8F8EE"/><stop offset="1" stop-color="#E9EFDA"/></linearGradient>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#B6D4C7" fill-opacity=".13"/></pattern>
+    <clipPath id="edge"><rect width="1440" height="440" rx="24"/></clipPath>
+  </defs>
+  <g clip-path="url(#edge)">
+    <rect width="1440" height="440" fill="url(#background)"/>
+    <rect x="850" width="590" height="440" fill="url(#dots)"/>
+    <circle cx="1224" cy="231" r="235" stroke="#9CCBBA" stroke-opacity=".14"/>
+    <circle cx="1224" cy="231" r="183" stroke="#9CCBBA" stroke-opacity=".18"/>
+    <circle cx="1224" cy="231" r="127" stroke="#9CCBBA" stroke-opacity=".12"/>
+    <rect x="64" y="54" width="46" height="46" rx="13" fill="#DCEABD"/>
+    <path d="M77 66H89C96 66 99 70 99 75C99 81 95 84 89 84H84V91H77V66Z" fill="#07565A"/>
+    <path d="M84 72L89 77L101 64" stroke="#DCEABD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="126" y="86" fill="#F5F5EA" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="32" letter-spacing="-1">porikkhon<tspan fill="#DCEABD">.</tspan></text>
+    <text x="64" y="158" fill="#B9D5C7" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" letter-spacing="3.4">A LITTLE PRACTICE. A LOT MORE CONFIDENCE.</text>
+    <text x="60" y="236" fill="#F7F6ED" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="700" letter-spacing="-2.5">Your next step,</text>
+    <text x="60" y="309" fill="#DCEABD" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="700" letter-spacing="-2.5">prepared.</text>
+    <text x="64" y="359" fill="#CDDFD7" font-family="Arial, Helvetica, sans-serif" font-size="19">Focused practice. Clear progress. Thoughtful teaching.</text>
+    <g transform="rotate(-12 1184 230)"><rect x="1030" y="121" width="248" height="229" rx="20" fill="#094348" stroke="#7AB5A2" stroke-opacity=".48"/></g>
+    <g transform="rotate(9 1190 235)"><rect x="1060" y="111" width="248" height="229" rx="20" fill="#EBA58D"/></g>
+    <rect x="1053" y="102" width="248" height="229" rx="20" fill="url(#card)"/>
+    <rect x="1076" y="125" width="75" height="24" rx="12" fill="#D6E7D7"/>
+    <text x="1089" y="141" fill="#41675B" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="9" letter-spacing="1.2">PRACTICE</text>
+    <path d="M1082 171H1222M1082 190H1173" stroke="#1E5652" stroke-width="7" stroke-linecap="round"/>
+    <rect x="1077" y="216" width="201" height="30" rx="7" stroke="#CAD8C9"/>
+    <circle cx="1093" cy="231" r="5" stroke="#95AEA0"/>
+    <path d="M1109 231H1229" stroke="#BDCFC1" stroke-width="4" stroke-linecap="round"/>
+    <rect x="1077" y="254" width="201" height="30" rx="7" fill="#07565A"/>
+    <path d="M1089 269L1093 273L1100 265" stroke="#DEEDBC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1111 269H1229" stroke="#D1E2CF" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="1310" cy="103" r="24" fill="#DCEABD"/>
+    <path d="M1301 103L1307 109L1319 97" stroke="#07565A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1011 93V109M1003 101H1019M1341 321V337M1333 329H1349" stroke="#DCEABD" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="1008" cy="336" r="5" fill="#EBA58D"/>
+    <path d="M64 405H1376" stroke="#B5D2C0" stroke-opacity=".17"/>
+  </g>
+</svg>
