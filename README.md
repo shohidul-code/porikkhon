@@ -148,16 +148,17 @@ The script also exercises the backup provider. Omitting <code>GENERATION_MODULES
 
 </details>
 
-### Last recorded validation · 24 October 2026
+### Last recorded validation · 25 October 2026
 
 | Area | Recorded result |
 | :--- | :--- |
-| **Automated checks** | 51 passed, including grading, quotas, privacy boundaries, classroom access and MFA assurance enforcement |
+| **Automated checks** | 58 passed, including grading, quotas, privacy boundaries, classroom access and MFA assurance enforcement |
 | **Build quality** | TypeScript and production build passed |
+| **Fresh generation** | Gemini Flash-Lite generated and reviewed 3 questions in each of 13 modules, plus a 20-question mathematics quiz |
 | **Live endpoints** | Supabase health, grading, anonymous private-action rejection and cross-origin rejection checked |
 | **Word export** | Valid document with embedded Bengali fonts; both rendered pages visually inspected |
 | **Responsive UI** | Mobile and tablet course views checked without horizontal overflow |
-| **Dependency and database review** | Production dependency audit reported zero known vulnerabilities; Supabase security advisor reported no findings at validation time |
+| **Dependency and database review** | Previous production dependency audit reported zero known vulnerabilities; the latest Supabase review notes disabled leaked-password protection |
 
 Full evidence and limits are in [the validation record](VALIDATION.md). Local database tests use isolated synthetic fixtures, not production authentication users. Email delivery, personal authenticator enrollment and real payments require their own live checks.
 
@@ -183,11 +184,11 @@ Budgets use Bangladesh time. Failed requests count toward the limit to prevent q
 
 ## Launch status
 
-The application is deployed at **[porikkhon-two.vercel.app](https://porikkhon-two.vercel.app/)**. These operational requirements remained open in the last recorded validation on **24 October 2026**.
+The application is deployed at **[porikkhon-two.vercel.app](https://porikkhon-two.vercel.app/)**. These operational requirements remained open in the last recorded validation on **25 October 2026**.
 
 | Area | What remains |
 | :--- | :--- |
-| **Fresh AI generation** | Restore provider quota or configure an available compatible model. The final live run received Gemini <code>429</code> / <code>503</code> and OpenRouter <code>429</code> responses. Starter practice remains available. |
+| **Fresh AI generation** | Primary generation was restored with <code>gemini-3.5-flash-lite</code> and replacement server-side credentials. The OpenRouter free backup has exhausted its account daily quota and needs a reset or additional provider allowance. |
 | **Public accounts** | Production Site URL and exact callbacks are configured. Configure production SMTP and server password policy, then finish real-account recovery and authenticator checks. |
 | **Payments** | Supply merchant and privileged server credentials, finish sandbox validation and explicitly activate billing. Checkout is disabled. |
 | **Custom domain** | Apply Vercel ownership and routing records for <code>porikkhon.com</code>, then verify DNS and HTTPS. |

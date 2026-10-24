@@ -29,3 +29,14 @@ The reported account was already confirmed; Supabase redirected the browser to i
 The application now uses a configured canonical email-link origin, handles a missing PKCE verifier with a neutral sign-in handoff, and provides confirmation resend and expired-link guidance. Seven auth regression tests were added; all 58 automated checks, TypeScript and the production build passed. Four live Supabase redirect checks passed: default redirect, exact callback, stale localhost override, and an untrusted external override all returned to the production origin. These checks use deliberately invalid verification tokens and inspect redirects without sending emails or consuming real confirmation links.
 
 A current security advisor reports that leaked-password protection is disabled; this is separate from the redirect defect. See [Supabase password protection](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection). The earlier no-findings record describes the earlier validation snapshot.
+
+
+## Fresh question generation correction · 25 October 2026
+
+Replacement Gemini and OpenRouter keys were installed as server-only Vercel Secrets, with local credentials kept in the ignored environment file. No credential values are committed. Authenticated provider checks accepted both keys. Generation on the previous Gemini model and the current full Flash model returned HTTP 503 high-demand errors. The OpenRouter free backup returned HTTP 429 with `openrouter_free_tier_daily`, limit 50 and zero remaining; replacing a key does not reset account-wide quota.
+
+The supported `gemini-3.5-flash-lite` model returned a valid response and completed the actual structured draft, separate review and curriculum-validation pipeline. Three questions were generated successfully for each of all thirteen modules, using Bengali for Bangla and each module's first allowed topic. A separate twenty-question mathematics quiz also passed; its draft and review completed within the existing request timeouts. Sample Bangla and chemistry output was inspected. These results demonstrate provider availability and application rules at the time of testing, not a guarantee that every generated fact is correct.
+
+The application default, environment template and production model override now select Flash-Lite. TypeScript, the production build and all 58 automated checks passed. No authentication requirement, generation quota or database policy was weakened. The OpenRouter credential is configured, but its exhausted daily free quota prevented a successful live backup-generation test.
+
+References: [Gemini model documentation](https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash-lite), [Gemini deprecations](https://ai.google.dev/gemini-api/docs/deprecations), and [OpenRouter free limits](https://openrouter.ai/docs/faq).
