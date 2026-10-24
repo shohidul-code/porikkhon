@@ -81,7 +81,7 @@ The database owns saved attempt deadlines and grading. Learners receive question
 
 1. **Scope the session.** Validate the module, topic, count, difficulty and language, then reserve the generation budget.
 2. **Draft and review.** Gemini produces a structured quiz and a separate review pass checks it. OpenRouter is the fallback when a provider attempt fails.
-3. **Validate and save.** Check the schema, answer indices, distinct options, duplicates, language and topic allocation before saving the private snapshot.
+3. **Validate and save.** Derive each answer index from its exact correct option text. Check the schema, distinct options, duplicates, language and topic allocation before saving the private snapshot. A bounded correction pass repairs rejected output.
 
 AI questions can contain errors. Review passes and automatic checks reduce mistakes; learners can report an issue after submission. These are practice materials, not official past questions or certified exam content.
 
@@ -152,7 +152,7 @@ The script also exercises the backup provider. Omitting <code>GENERATION_MODULES
 
 | Area | Recorded result |
 | :--- | :--- |
-| **Automated checks** | 58 passed, including grading, quotas, privacy boundaries, classroom access and MFA assurance enforcement |
+| **Automated checks** | 61 passed, including grading, quotas, privacy boundaries, classroom access and MFA assurance enforcement |
 | **Build quality** | TypeScript and production build passed |
 | **Fresh generation** | Gemini Flash-Lite generated and reviewed 3 questions in each of 13 modules, plus a 20-question mathematics quiz |
 | **Live endpoints** | Supabase health, grading, anonymous private-action rejection and cross-origin rejection checked |
