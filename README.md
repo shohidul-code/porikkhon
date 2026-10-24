@@ -16,7 +16,7 @@ A Bangladesh-focused exam practice platform built with Next.js, Supabase Auth an
 
 Use Node.js 24 and npm. Run `npm ci`, copy `.env.example` to `.env.local`, and configure the real Supabase project URL and publishable key. API keys belong only in `.env.local` or encrypted hosting variables. Never place them in `NEXT_PUBLIC_` variables, source, or client code. Empty optional model variables use the tested defaults.
 
-Production preview: https://porikkhon-two.vercel.app/ . The app is linked to Vercel project `porikkhon` and Supabase project `jwuwwgkvjzbzqrezpyko`. Account linkage is local configuration and is excluded from Git. The original private Sites deployment remains separate and is preserved as the earlier version; its ChatGPT identity records are not silently assigned to new Supabase accounts.
+Live deployment: https://porikkhon-two.vercel.app/ . Private source: https://github.com/shohidul-code/porikkhon . The app is linked to Vercel project `porikkhon` and Supabase project `jwuwwgkvjzbzqrezpyko`. Account linkage is local configuration and is excluded from Git. The original private Sites deployment remains separate and is preserved as the earlier version; its ChatGPT identity records are not silently assigned to new Supabase accounts.
 
 `supabase/schema.sql` and the matching baseline migration define the database. Apply only to the intended project. Private tables deny direct client access. The public RPC wrappers call private, explicitly scoped business functions, which validate `auth.uid()` and the authenticator assurance level. Supabase's secret/service-role key must never reach a browser.
 

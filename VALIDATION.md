@@ -14,7 +14,7 @@ Public email sign-up, confirmation and password-reset delivery require a configu
 
 Automatic approval review rejected a temporary administrator fixture function because it would create persistent privileged account-management access. It was not deployed. The test suite uses a safer isolated local database instead. No production authentication users were created or deleted by the tests.
 
-GitHub repository creation requires a repository destination or an authenticated browser session because the connected GitHub tools can write existing repositories but do not create repositories. Source is prepared independently of that account setup step.
+The user selected the signed-in account shohidul-code. The private repository https://github.com/shohidul-code/porikkhon was created and all source folders were committed through the authenticated browser. The GitHub connector belongs to another account and cannot access this private repository. Browser archive download-event verification timed out; each source upload and resulting commit was verified in the repository UI.
 
 ## Production deployment
 
