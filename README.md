@@ -112,6 +112,7 @@ Start from [the environment template](.env.example). Keep real credentials in ig
 | :--- | :--- | :--- |
 | <code>NEXT_PUBLIC_SUPABASE_URL</code> | Public | Supabase project URL |
 | <code>NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY</code> | Public | Browser access through the project's scoped permissions |
+| <code>NEXT_PUBLIC_APP_URL</code> | Public | Canonical app origin for confirmation, resend and recovery links |
 | <code>GEMINI_API_KEY</code> | Server only | Primary question provider |
 | <code>OPENROUTER_API_KEY</code> | Server only | Backup question provider |
 | <code>GEMINI_MODEL</code>, <code>OPENROUTER_MODEL</code>, <code>OPENROUTER_REVIEW_MODEL</code> | Server only | Optional overrides; defaults are in [the generation service](lib/generation.ts) |
@@ -187,7 +188,7 @@ The application is deployed at **[porikkhon-two.vercel.app](https://porikkhon-tw
 | Area | What remains |
 | :--- | :--- |
 | **Fresh AI generation** | Restore provider quota or configure an available compatible model. The final live run received Gemini <code>429</code> / <code>503</code> and OpenRouter <code>429</code> responses. Starter practice remains available. |
-| **Public accounts** | Configure SMTP, callback URLs and server password policy, then verify signup, recovery and authenticator flows with a real account. |
+| **Public accounts** | Production Site URL and exact callbacks are configured. Configure production SMTP and server password policy, then finish real-account recovery and authenticator checks. |
 | **Payments** | Supply merchant and privileged server credentials, finish sandbox validation and explicitly activate billing. Checkout is disabled. |
 | **Custom domain** | Apply Vercel ownership and routing records for <code>porikkhon.com</code>, then verify DNS and HTTPS. |
 
@@ -253,3 +254,9 @@ The original private Sites deployment is preserved separately. Its ChatGPT ident
   <sub>English and বাংলা · Built for focused practice and thoughtful teaching</sub><br />
   <sub>Bengali font: Noto Sans Bengali, distributed with its <a href="public/fonts/OFL-NotoSansBengali.txt">SIL Open Font License</a>.</sub>
 </p>
+
+### Email confirmation redirects
+
+The live Supabase Site URL is `https://porikkhon-two.vercel.app`, with exact allowed callbacks at `/auth/callback`, `/auth/callback?next=reset` and `/auth/confirm`. Keep `NEXT_PUBLIC_APP_URL` and server `PUBLIC_APP_URL` aligned with that origin. Production email links reject localhost origins.
+
+If an email link opens in another browser without the original PKCE verifier, Porikkhon offers email/password sign-in rather than claiming that the link expired or that confirmation succeeded. Expired links offer a resend option. Password recovery still requires a valid session and a browser-bound reset flow; a missing verifier never permits changing a password.
