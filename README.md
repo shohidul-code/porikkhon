@@ -188,7 +188,7 @@ The application is deployed at **[porikkhon-two.vercel.app](https://porikkhon-tw
 
 | Area | What remains |
 | :--- | :--- |
-| **Fresh AI generation** | Primary generation was restored with <code>gemini-3.5-flash-lite</code> and replacement server-side credentials. The OpenRouter free backup has exhausted its account daily quota and needs a reset or additional provider allowance. |
+| **Fresh AI generation** | Primary generation with <code>gemini-3.5-flash-lite</code> and backup generation with <code>nvidia/nemotron-3.5-super-vl:free</code> (OpenRouter) are verified live across drafting, review and curriculum checks. |
 | **Public accounts** | Production Site URL and exact callbacks are configured. Configure production SMTP and server password policy, then finish real-account recovery and authenticator checks. |
 | **Payments** | Supply merchant and privileged server credentials, finish sandbox validation and explicitly activate billing. Checkout is disabled. |
 | **Custom domain** | Apply Vercel ownership and routing records for <code>porikkhon.com</code>, then verify DNS and HTTPS. |

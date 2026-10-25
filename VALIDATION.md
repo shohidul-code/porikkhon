@@ -44,3 +44,23 @@ References: [Gemini model documentation](https://ai.google.dev/gemini-api/docs/m
 A larger-quiz spot check found an arithmetic explanation and answer index disagreeing. Gemini review now uses medium reasoning and recomputes the numerical answer. The provider returns exact correct option text; the server derives its index and rejects missing or ambiguous matches. Three deterministic regression checks cover conflicting model indices, absent or duplicate matches, and Bengali/reordered options. A live regression corrected the deliberately wrong arithmetic-series answer from 840 to 820 and selected the correct option. A new twenty-question quiz passed the updated pipeline. A bounded correction pass repairs structural validation failures; Gemini transient errors receive one SDK retry, and a 105-second total budget bounds generation inside the 120-second route limit. Some repeated smoke checks encountered transient timeouts/rate limits, so provider availability is not guaranteed by credentials alone.
 
 The follow-up smoke checks completed successfully for all thirteen modules with the exact-option answer contract, including the six modules rechecked after transient limits. Three deterministic answer-mapping regression checks bring the automated total to 61 passing checks. The final production build and its TypeScript stage passed. Provider quotas and temporary outages can still make generation unavailable; the free OpenRouter backup was not represented as working while its quota was exhausted.
+
+## Signed-in production test, active-attempt resume and backup provider verification · 25 October 2026
+
+- **Provider availability and failover**: Rechecked primary provider (`gemini-3.5-flash-lite`) and backup provider (`nvidia/nemotron-3.5-super-vl:free`). Both passed live generation: Gemini generated 3 questions for Admission Mathematics, and OpenRouter generated 3 questions for Admission English, confirming that the backup provider daily allowance had reset and is fully operational.
+- **Signed-in production workflow**: Executed an end-to-end signed-in test against the live production deployment (`https://porikkhon-two.vercel.app`) using confirmed credentials (`shohidul.islam01@northsouth.edu`):
+  1. Authenticated via Supabase Auth; verified AAL1 assurance level and private user bootstrap (`profile: shohidul.islam01`, `generationUsage: 0/5`).
+  2. Generated fresh questions for Admission Mathematics (Standard difficulty, Algebra topic, 3 questions). Attempt `at_a33f0d38-03aa-42db-8ce4-28e5b1fe88c2` was created and persisted in Supabase PostgreSQL via server-only RPC.
+  3. Confirmed private attempt question retrieval hides `answer` keys and `explanation` text from the active learner session.
+  4. Submitted saved answers through `POST /api/porikkhon`. Verified server-side grading with negative marking (computed score: -0.5/3; client-supplied score `999` completely ignored).
+  5. Verified post-submission review unlocks complete explanations and answer states.
+  6. Verified user history, activity graph, and daily generation quota usage (`1/5`) updated on the live database.
+  7. Downloaded Word answer review document (`Porikkhon_Answer_Review.docx`) via authenticated `GET /api/review?id=...`; verified valid DOCX ZIP structure.
+- **Active attempt resume verification**: Confirmed that when an attempt is active, calling `action: 'start'` or `action: 'generate'` returns `{ id: activeAttempt.id, resumed: true }`, preventing accidental abandonment or silent quota depletion.
+- **Remaining operational blockers**:
+  1. *Production SMTP*: Configure custom SMTP credentials in Supabase Dashboard so confirmation/recovery emails reach arbitrary public addresses.
+  2. *Password policy*: Enable leaked-password protection and minimum length enforcement in Supabase Auth security settings.
+  3. *Real-device TOTP*: Complete user-side Google Authenticator QR scanning and verification on a physical device.
+  4. *Payment sandbox*: Supply merchant credentials (`SSLCOMMERZ_STORE_ID`, `SSLCOMMERZ_STORE_PASSWORD`, `SUPABASE_SERVICE_ROLE_KEY`) and set `BILLING_ENABLED=true` to validate checkout flow.
+  5. *Custom domain (`porikkhon.com`)*: Replace registrar parking A record (`162.255.119.227`) with `76.76.21.21` and add `_vercel` verification TXT record while preserving existing MX/SPF email forwarding records.
+
